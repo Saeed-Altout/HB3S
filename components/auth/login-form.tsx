@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useTransition } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -21,8 +23,14 @@ import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 
 import { loginSchema } from "@/schemas";
+import { login } from "@/actions/login";
 
 export const LoginForm = () => {
+  const [isPending, startTransition] = useTransition();
+
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
+
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -32,7 +40,20 @@ export const LoginForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof loginSchema>) => {
-    console.log(values);
+    setSuccess("");
+    setError("");
+
+    startTransition(() => {
+      login(values).then((data) => {
+        if (data?.success) {
+          setSuccess(data?.success);
+        }
+
+        if (data?.error) {
+          setError(data?.error);
+        }
+      });
+    });
   };
 
   return (
@@ -52,7 +73,12 @@ export const LoginForm = () => {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="email" {...field} />
+                    <Input
+                      disabled={isPending}
+                      type="email"
+                      placeholder="email"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -65,16 +91,21 @@ export const LoginForm = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="******" {...field} />
+                    <Input
+                      disabled={isPending}
+                      type="password"
+                      placeholder="******"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
           </div>
-          <FormError message="" />
-          <FormSuccess message="" />
-          <Button type="submit" className="w-full">
+          <FormError message={error} />
+          <FormSuccess message={success} />
+          <Button disabled={isPending} type="submit" className="w-full">
             Login
           </Button>
         </form>
