@@ -67,3 +67,12 @@ model Session {
 
   @@index([userId])
 }
+
+model VerificationToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique @db.VarChar(50)
+  expires DateTime
+
+  @@unique([email, token])
+}
