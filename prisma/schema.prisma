@@ -30,8 +30,8 @@ model Account {
   id                       String  @id @default(cuid())
   userId                   String  @unique
   type                     String
-  provider                 String
-  providerAccountId        String
+  provider                 String  @db.VarChar(50)
+  providerAccountId        String  @db.VarChar(50)
   refresh_token            String? @db.Text
   access_token             String? @db.Text
   expires_at               Int?
