@@ -72,7 +72,7 @@ export const RegisterForm = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel className="font-semibold">Name</FormLabel>
                   <FormControl>
                     <Input
                       disabled={isPending}
@@ -90,7 +90,7 @@ export const RegisterForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="font-semibold">Email</FormLabel>
                   <FormControl>
                     <Input
                       disabled={isPending}
@@ -108,7 +108,7 @@ export const RegisterForm = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className="font-semibold">Password</FormLabel>
                   <FormControl>
                     <Input
                       disabled={isPending}
