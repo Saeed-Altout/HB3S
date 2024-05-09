@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import { siteConfig } from "@/config/site";
+import { Toaster } from "@/components/ui/sonner";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default async function RootLayout({
       <html lang="en">
         <body className={cn(poppins.className, "font-poppins")}>
           {children}
+          <Toaster />
         </body>
       </html>
     </SessionProvider>

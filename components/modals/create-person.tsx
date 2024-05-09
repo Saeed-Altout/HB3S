@@ -1,5 +1,8 @@
 "use client";
 
+import axios from "axios";
+import { toast } from "sonner";
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -21,7 +24,7 @@ import { personSchema } from "@/schemas";
 
 export const CreatePerson = () => {
   const personModal = useCreatePerson();
-
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const form = useForm<z.infer<typeof personSchema>>({
     resolver: zodResolver(personSchema),
     defaultValues: {
@@ -29,8 +32,16 @@ export const CreatePerson = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof personSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof personSchema>) => {
+    try {
+      setIsLoading(true);
+      await axios.post("/api/persons", values);
+      toast.success("Person is Added");
+    } catch (error) {
+      toast.error("Something went wrong!");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
