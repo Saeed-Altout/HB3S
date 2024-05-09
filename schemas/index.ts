@@ -19,3 +19,9 @@ export const resetSchema = z.object({
 export const newPasswordSchema = z.object({
   password: z.string().min(6, { message: "Password is required" }),
 });
+
+export const personSchema = z.object({
+  name: z.string().min(2, {
+    message: "Name is required",
+  }),
+});
