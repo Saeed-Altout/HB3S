@@ -1,12 +1,12 @@
 import { create } from "zustand";
 
-interface UseCreatePatientProps {
+interface UseCreatePersonProps {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 }
 
-export const useCreatePatient = create<UseCreatePatientProps>((set) => ({
+export const useCreatePerson = create<UseCreatePersonProps>((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),

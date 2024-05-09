@@ -1,7 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
 import {
   Dialog,
   DialogContent,
@@ -25,21 +21,11 @@ export const Modal = ({
   isOpen,
   onClose,
 }: ModalProps) => {
-  const [isMounted, setIsMounted] = useState<boolean>(false);
-
   const onChange = (open: boolean) => {
     if (!open) {
       onClose();
     }
   };
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return null;
-  }
 
   return (
     <Dialog open={isOpen} onOpenChange={onChange}>
