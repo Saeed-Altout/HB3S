@@ -1,15 +1,15 @@
 import { NextResponse } from "next/server";
 
-import { auth } from "@/auth";
 import { db } from "@/lib/db";
+import { currentUser } from "@/lib/auth";
 
 export async function POST(req: Request) {
   try {
-    const session = auth();
+    const { id: userId } = await currentUser();
     const body = await req.json();
     const { name } = body;
 
-    if (!session) {
+    if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
@@ -20,6 +20,7 @@ export async function POST(req: Request) {
     const person = await db.person.create({
       data: {
         name,
+        userId,
       },
     });
 
