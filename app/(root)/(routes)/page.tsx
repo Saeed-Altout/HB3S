@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 import { useCreatePerson } from "@/hooks/use-create-person";
 
-export default function DashboardPage() {
+export default function RootPage() {
   const isOpen = useCreatePerson((state) => state.isOpen);
   const onOpen = useCreatePerson((state) => state.onOpen);
 
@@ -13,5 +13,6 @@ export default function DashboardPage() {
       onOpen();
     }
   }, [isOpen, onOpen]);
+
   return null;
 }
