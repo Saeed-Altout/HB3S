@@ -13,5 +13,5 @@ export default function DashboardPage() {
       onOpen();
     }
   }, [isOpen, onOpen]);
-  return <div>Dashboard page</div>;
+  return null;
 }
