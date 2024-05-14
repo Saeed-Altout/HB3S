@@ -5,7 +5,11 @@ import { currentUser } from "@/lib/auth";
 
 import { Navbar } from "./_components/navbar";
 import { Footer } from "./_components/footer";
-import { Sidebar } from "./_components/sidebar";
+
+export interface Route {
+  label: string;
+  href: string;
+}
 
 export default async function DashboardLayout({
   children,
@@ -31,14 +35,22 @@ export default async function DashboardLayout({
     redirect("/");
   }
 
+  const routes = [
+    {
+      label: "home",
+      href: `/${person.id}`,
+    },
+    {
+      label: "settings",
+      href: `/${person.id}/settings`,
+    },
+  ];
+
   return (
-    <div className="h-full flex">
-      <Sidebar />
-      <div className="flex-1 flex flex-col justify-between">
-        <Navbar />
-        <main className="flex-1 px-4 overflow-y-auto">{children}</main>
-        <Footer />
-      </div>
+    <div className="h-full">
+      <Navbar routes={routes} />
+      <main className="px-4 overflow-y-auto pt-20 pb-12">{children}</main>
+      <Footer />
     </div>
   );
 }
