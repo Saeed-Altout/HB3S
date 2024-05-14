@@ -18,9 +18,9 @@ import { Route } from "../layout";
 
 export const Navbar = ({ routes }: { routes: Route[] }) => {
   return (
-    <div className="fixed top-0 z-20 bg-background w-full h-16 border-b shadow-sm flex justify-between items-center">
-      <div className="flex items-center justify-between w-full max-w-screen-xl mx-auto px-4">
-        <div>logo</div>
+    <div className="fixed top-0 z-20 bg-background w-full h-16 border-b flex justify-between items-center">
+      <div className="flex items-center justify-start w-full px-4">
+        <div className="font-semibold tracking-wider">HB3S 🚀⚡</div>
         <NavigationMenu className="hidden md:block">
           <NavigationMenuList>
             {routes.map(({ label, href }, index) => (
