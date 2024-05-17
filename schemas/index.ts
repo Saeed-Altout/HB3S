@@ -25,3 +25,12 @@ export const personSchema = z.object({
     message: "Name is required",
   }),
 });
+
+export const patientSchema = z.object({
+  name: z.string().min(2, {
+    message: "Name is required",
+  }),
+  email: z.string().email({
+    message: "email is required",
+  }),
+});
