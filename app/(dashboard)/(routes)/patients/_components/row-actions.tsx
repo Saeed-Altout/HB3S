@@ -56,14 +56,18 @@ export const RowActions = ({ data }: { data: Patients }) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem onClick={() => router.push(`/patients/${data.id}`)}>
+          <DropdownMenuItem
+            onClick={() => router.push(`/patients/${data.id}/edit`)}
+          >
             <Edit className="mr-2 h-4 w-4" /> Update
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => router.push(`/patients/${data.id}/sessions`)}
+          >
+            <Play className="mr-2 h-4 w-4" /> Start Session
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setOpen(true)}>
             <Trash className="mr-2 h-4 w-4" /> Delete
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Play className="mr-2 h-4 w-4" /> Start Session
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
