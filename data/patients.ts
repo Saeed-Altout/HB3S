@@ -19,3 +19,14 @@ export const getPatientById = async (id: string) => {
     return null;
   }
 };
+export const getSessionsById = async (id: string) => {
+  try {
+    return await db.sessions.findMany({
+      where: {
+        patientId: id,
+      },
+    });
+  } catch (error) {
+    return [];
+  }
+};
