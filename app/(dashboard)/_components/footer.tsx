@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 export const Footer = () => {
   return (
-    <div className="fixed bottom-0 z-20 bg-background w-full shadow-sm h-12 flex justify-end items-center gap-x-4 px-4">
+    <div className="fixed bottom-0 z-30 flex h-14 items-center gap-4 bg-background px-4 sm:px-6">
       <Button
         variant="ghost"
         size="sm"

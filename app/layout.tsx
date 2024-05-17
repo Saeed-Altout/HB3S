@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
+
 import { SessionProvider } from "next-auth/react";
-import { auth } from "@/auth";
-import { siteConfig } from "@/config/site";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
+
+import { auth } from "@/auth";
+import { cn } from "@/lib/utils";
+import { siteConfig } from "@/config/site";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -30,8 +33,10 @@ export default async function RootLayout({
     <SessionProvider session={session}>
       <html lang="en">
         <body className={cn(poppins.className, "font-poppins")}>
-          {children}
-          <Toaster />
+          <TooltipProvider>
+            {children}
+            <Toaster />
+          </TooltipProvider>
         </body>
       </html>
     </SessionProvider>
