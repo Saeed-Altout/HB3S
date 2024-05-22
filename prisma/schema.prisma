@@ -26,7 +26,6 @@ model User {
   image                 String?
   password              String?
   role                  UserRole               @default(USER)
-  Session               Session[]
   Account               Account?
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
@@ -54,19 +53,6 @@ model Account {
   updatedAt DateTime @updatedAt
 
   @@unique([provider, providerAccountId])
-  @@index([userId])
-}
-
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
   @@index([userId])
 }
 
@@ -103,23 +89,6 @@ model TwoFactorConfirmation {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId])
-}
-
-model Person {
-  id        String    @id @default(cuid())
-  userId    String
-  name      String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime?
-}
-
-model Patients {
-  id           String    @id @default(cuid())
-  sequentialId Int       @unique
-  name         String
-  email        String?
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime?
 }
 
 model Sessions {

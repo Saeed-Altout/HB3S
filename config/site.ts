@@ -1,4 +1,4 @@
-import { Home, Settings, Code, Users, List } from "lucide-react";
+import { Home, Settings, List } from "lucide-react";
 
 export const siteConfig = {
   name: "HB3S",
@@ -15,11 +15,6 @@ export const routes = [
     label: "Settings",
     href: "/settings",
     icon: Settings,
-  },
-  {
-    label: "Patients",
-    href: "/patients",
-    icon: Users,
   },
   {
     label: "Sessions",
