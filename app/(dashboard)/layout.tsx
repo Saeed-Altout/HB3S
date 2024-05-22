@@ -1,7 +1,6 @@
 import { Sidebar } from "./_components/sidebar";
 import { Navbar } from "./_components/navbar";
 import { Footer } from "./_components/footer";
-import { CreateModal } from "@/components/modals/create-modal";
 
 export default function DashboardLayout({
   children,
@@ -10,7 +9,6 @@ export default function DashboardLayout({
 }>) {
   return (
     <>
-      <CreateModal />
       <div className="flex min-h-screen w-full flex-col bg-background">
         <Sidebar />
         <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
