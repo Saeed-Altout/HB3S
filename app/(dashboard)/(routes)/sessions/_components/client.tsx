@@ -26,7 +26,7 @@ export const SessionsClient = ({
   const onStartNewSession = async () => {
     try {
       setIsLoading(true);
-      await axios.post("/api/sessions", { amount: "90" });
+      await axios.post("/api/sessions", { level: "2", glucose: "90" });
       toast.success("Session is start!");
       router.refresh();
     } catch (error) {

@@ -15,15 +15,18 @@ async function getNextSequentialId() {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { amount } = await body;
+    const { level, glucose } = await body;
     const { id: userId } = await currentUser();
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    if (!amount) {
-      return new NextResponse("Amount is required", { status: 400 });
+    if (!level) {
+      return new NextResponse("Level is required", { status: 400 });
+    }
+    if (!glucose) {
+      return new NextResponse("Glucose is required", { status: 400 });
     }
 
     const nextId = await getNextSequentialId();
@@ -31,7 +34,8 @@ export async function POST(req: Request) {
     const session = await db.sessions.create({
       data: {
         sequentialId: nextId,
-        amount,
+        level,
+        glucose,
       },
     });
 

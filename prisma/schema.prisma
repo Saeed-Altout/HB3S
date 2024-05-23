@@ -94,7 +94,8 @@ model TwoFactorConfirmation {
 model Sessions {
   id           String    @id @default(cuid())
   sequentialId Int       @unique
-  amount       String?
+  level        String?
+  glucose      String?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime?
 }

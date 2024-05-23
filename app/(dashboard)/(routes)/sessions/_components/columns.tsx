@@ -20,8 +20,12 @@ export const columns: ColumnDef<Sessions>[] = [
     ),
   },
   {
-    accessorKey: "amount",
-    header: () => <p className="text-nowrap">Amount Glucose</p>,
+    accessorKey: "level",
+    header: "Level",
+  },
+  {
+    accessorKey: "glucose",
+    header: "Glucose",
   },
   {
     accessorKey: "createdAt",
