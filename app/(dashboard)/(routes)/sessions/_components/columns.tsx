@@ -2,6 +2,7 @@
 
 import { Sessions } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
+import { format } from "date-fns";
 
 import { RowActions } from "./row-actions";
 
@@ -32,9 +33,7 @@ export const columns: ColumnDef<Sessions>[] = [
     header: "Date",
     cell: ({ row }) => (
       <p className="text-nowrap">
-        {`${new Date().getFullYear()} - ${new Date().getMonth()} - ${new Date().getDay()} | ${
-          new Date().getHours() - 12
-        }:${new Date().getMinutes()}`}
+        {format(new Date(row.original.createdAt), "hh:mm  /   dd - MMM")}
       </p>
     ),
   },
